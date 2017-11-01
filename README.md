@@ -1,5 +1,6 @@
 # ztreev(vue2.x组件)
 环境是抄的这个哥们的[项目](https://github.com/Litor/ztree-vue)的，npm安装他的包不能用,因为他是1.0版本，自己搞支持vue2.x版本。
+目前是一个纯粹的包裹一下，没有任何改动。
 
 [![NPM](https://nodei.co/npm/ztreev.png)](https://nodei.co/npm/ztreev/)
 
@@ -19,6 +20,7 @@
     ```
 3. vue代码
     ```vue
+    //加载静态数据
     <template>
       <ztree
         :setting="{
@@ -75,53 +77,43 @@
               isParent: true
             }
           ]
-        },
-        {
-          label: '父节点2 - 折叠',
-          children: [
-            {
-              label: '父节点21 - 展开',
-              open: true,
-              children: [
-                {
-                  label: '叶子节点211'
-                },
-                {
-                  label: '叶子节点212'
-                },
-                {
-                  label: '叶子节点213'
-                },
-                {
-                  label: '叶子节点214'
-                }
-              ]
-            },
-            {
-              label: '父节点22 - 折叠',
-              children: [
-                {
-                  label: '叶子节点221'
-                },
-                {
-                  label: '叶子节点222'
-                },
-                {
-                  label: '叶子节点223'
-                },
-                {
-                  label: '叶子节点224'
-                }
-              ]
-            }
-          ]
         }
       ]"
       >
       </ztree>
     </template>
-    //引入你需要的样式
     <style>
       @import "~ztree/css/metroStyle/metroStyle.css";
     </style>
     ```
+    ```vue
+    //异步加载数据
+    <template>
+      <ztree :setting="{
+        data:{
+          key:{
+            name:'label'
+          }
+        },
+        once:{
+          url: './static/data/tree.json',
+          type : 'GET',
+          data :{param:123},
+          dataFilter:function(data){
+            return data
+          }
+        }
+      }"></ztree>
+    </template>
+    
+    <style>
+      @import "~ztree/css/metroStyle/metroStyle.css";
+    </style>
+
+    ```
+### Attributes
+| 参数      | 说明          | 类型      | 默认值                           |  备注 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| setting     | ztree origin setting | Object    |{async:{type:'get'}} | 参考 http://www.treejs.cn/v3/api.php<br/>加了一个once[Object]属性,一次加载所有树形数据，配置同$.ajax()的option<br/>但是其中的dataFilter方法是在ajax回调里执行的。   |
+| data     | localdata | Array    | —                               | 静态数据[Array]    |
+
