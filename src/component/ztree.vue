@@ -8,7 +8,7 @@
     async: {
       enable: false,
       contentType: 'application/json',
-      type: 'post',
+      type: 'get',
       dataType: 'json'
     },
     data: {
@@ -72,7 +72,7 @@
       }
     },
 
-    ready() {
+    mounted() {
       var setting = $.extend({}, defaultSetting, this.setting);
       this._setting = setting;
       if (this.data.length > 0) {
@@ -140,12 +140,9 @@
 
       _treeEvent(eventName) {
         return (...args) => {
-          this.$emit(Vue.util.hyphenate(eventName), ...args);
+          this.$emit(eventName.replace(/([a-zA-Z])([A-Z])/g, '$1-$2').toLowerCase(), ...args);
         };
       }
     }
   };
 </script>
-<style>
-
-</style>
