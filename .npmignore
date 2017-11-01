@@ -1,0 +1,6 @@
+.idea
+src
+node_modules
+.eslintrc
+.gitignore
+README.md

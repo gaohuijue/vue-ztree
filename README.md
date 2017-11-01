@@ -1,30 +1,4 @@
-# vue-ztree
+# ztreev
+环境是抄的这个哥们的[项目](https://github.com/Litor/ztree-vue)的，npm安装他的包不能用，自己搞。
 
-> A ztree vue component.
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+[![NPM](https://nodei.co/npm/ztreev.png)](https://nodei.co/npm/ztreev/)
