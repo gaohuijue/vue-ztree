@@ -73,7 +73,7 @@
     },
 
     mounted() {
-      var setting = $.extend({}, defaultSetting, this.setting);
+      var setting = _.merge(this.setting, defaultSetting);
       this._setting = setting;
       if (this.data.length > 0) {
         $.fn.zTree.init($(this.$el), setting, this.data);
@@ -100,7 +100,7 @@
           treeObj.addNodes(treeNode, treeNodes);
 
           if (inited) {
-            Vue.nextTick(() => {
+            this.$nextTick(() => {
               this.$emit('inited', treeNodes);
             });
           }
@@ -113,7 +113,7 @@
         this.$emit('on-expand', treeNode, event, treeId);
 
         if (this.extraSetting.url) {
-          Vue.nextTick(() => {
+          this.$nextTick(() => {
             this._load(treeNode);
           });
         }

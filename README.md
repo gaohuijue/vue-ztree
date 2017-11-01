@@ -7,14 +7,13 @@
 1. 我使用的是vue-cli初始化的项目
 `vue init webpack PROJECT_NAME`
 
-2. webpack.base.conf.js添加配置,否则找不到jQuery、$、_、Vue等变量。
+2. webpack.base.conf.js添加配置,否则找不到jQuery、$、_ 等变量。
     ```
     plugins: [
       new webpack.ProvidePlugin({
         jQuery: 'jquery',
         $: 'jquery',
-        _: 'lodash',
-        Vue: 'vue'
+        _: 'lodash'
       })
     ]
     ```
