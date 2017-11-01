@@ -3,3 +3,8 @@ src
 node_modules
 .eslintrc
 .gitignore
+.babelrc
+gulp
+gulpfile.babel.js
+.editorconfig
+.npmignore
