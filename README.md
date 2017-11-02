@@ -117,7 +117,7 @@
 | setting     | ztree origin setting | Object    |{async:{type:'get'}} | 参考 http://www.treejs.cn/v3/api.php<br/>加了一个once[Object]属性,一次加载所有树形数据，配置同$.ajax()的option<br/>但是其中的dataFilter方法是在ajax回调里执行的。   |
 | data     | localdata | Array    | —                               | 静态数据[Array]    |
 
-可以给组件绑定事件，目前只支持`vm.$on`这种方法给树添加事件钩子，与ztree一致，但不太全。
+可以给组件绑定事件，目前只支持`vm.$on`这种方法给树添加事件钩子，与ztree一致。
 回调的最后一个参数用于存储返回值，比如
 ```js
 beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy, store){

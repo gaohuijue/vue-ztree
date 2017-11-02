@@ -61,7 +61,11 @@
   }
 
   function mountZtreeCallback (setting, vm) {
-    const hooks = ['onClick', 'onDrag', 'onDrop', 'beforeDrag', 'beforeDrop', 'onRemove', 'onRightClick']
+    const hooks = ['beforeAsync', 'beforeCheck', 'beforeClick', 'beforeCollapse', 'beforeDblClick', 'beforeDrag',
+      'beforeDragOpen', 'beforeDrop', 'beforeEditName', 'beforeExpand', 'beforeMouseDown', 'beforeMouseUp',
+      'beforeRemove', 'beforeRename', 'beforeRightClick', 'onAsyncError', 'onAsyncSuccess', 'onCheck', 'onClick',
+      'onCollapse', 'onDblClick', 'onDrag', 'onDragMove', 'onDrop', 'onExpand', 'onMouseDown', 'onMouseUp',
+      'onNodeCreated', 'onRemove', 'onRename', 'onRightClick']
     setting.callback = {}
     hooks.forEach(function (evtName) {
       setting.callback[evtName] = function () {
