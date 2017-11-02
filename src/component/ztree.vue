@@ -3,7 +3,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  var index = 0;
+  var index = 0
 
   export default {
     props: {
@@ -11,13 +11,13 @@
       setting: {
         type: Object,
         default: function () {
-          return {};
+          return {}
         }
       },
       data: {
         type: Array,
         default: function () {
-          return [];
+          return []
         }
       }
     },
@@ -26,22 +26,23 @@
       return {
         treeId: 'ztree-' + index++,
         currentSelectedNodeId: ''
-      };
+      }
     },
 
     mounted() {
-      const setting = this.setting;
+      mountZtreeCallback(this.setting, this)
+      const setting = this.setting
       if (setting.once) {
-        const dataFilter = setting.once.dataFilter;
+        const dataFilter = setting.once.dataFilter
         //不删除会在ajax调用过程中调用
-        delete setting.once.dataFilter;
+        delete setting.once.dataFilter
         $.ajax(setting.once).done((data) => {
-          $.fn.zTree.init($(this.$el), this.setting || {}, dataFilter(data) || null);
+          $.fn.zTree.init($(this.$el), this.setting || {}, dataFilter(data) || null)
           //再在配置项里显示
-          setting.once.dataFilter = dataFilter;
-        });
+          setting.once.dataFilter = dataFilter
+        })
       } else {
-        $.fn.zTree.init($(this.$el), this.setting || {}, this.data || null);
+        $.fn.zTree.init($(this.$el), this.setting || {}, this.data || null)
       }
     },
 
@@ -53,9 +54,24 @@
        * @returns 调用ztree原生方法的返回值
        */
       action(actionName, ...args) {
-        var treeObj = $.fn.zTree.getZTreeObj(this.treeId);
-        return treeObj[actionName](...args);
+        var treeObj = $.fn.zTree.getZTreeObj(this.treeId)
+        return treeObj[actionName](...args)
       }
     }
-  };
+  }
+
+  function mountZtreeCallback (setting, vm) {
+    const hooks = ['onClick', 'onDrag', 'onDrop', 'beforeDrag', 'beforeDrop', 'onRemove', 'onRightClick']
+    setting.callback = {}
+    hooks.forEach(function (evtName) {
+      setting.callback[evtName] = function () {
+        const args = _.slice(arguments)
+        const store = {}
+        args.unshift(evtName)
+        args.push(store)
+        vm.$emit.apply(vm, args)
+        return store.cancel === undefined ? true : !store.cancel
+      }
+    })
+  }
 </script>
