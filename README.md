@@ -124,3 +124,9 @@ beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy, store){
   store.cancel = true //防止拖放完成
 }
 ```
+
+### API
+|  方法  |  参数  |  说明  |
+|-------|------|--------|
+|action  |   actionName(方法名),args...(方法参数)   | 调用treeObj的方法，如comp.action('getNodeByTId','123')<br/>comp.action('getNodesByFilter',filter, isSingle, parentNode, invokeParam) |
+|refresh |mergeSetting(需要覆盖的配置)|与原setting混合，完成修改setting的效果，并重新初始化ztree.<br/>使用场景：开始时tree没有checkbox，调用<br/>comp.refresh({check:{enable:true}})给tree增加checkbox

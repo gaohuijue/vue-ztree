@@ -56,6 +56,12 @@
       action(actionName, ...args) {
         var treeObj = $.fn.zTree.getZTreeObj(this.treeId)
         return treeObj[actionName](...args)
+      },
+      refresh: function (toMerge) {
+        var treeObj = $.fn.zTree.getZTreeObj(this.treeId), setting = treeObj.setting,
+          $dom = $('#' + setting.treeId)
+        _.merge(setting, toMerge)
+        $.fn.zTree.init($dom, setting, treeObj.getNodes())
       }
     }
   }
