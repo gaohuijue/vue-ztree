@@ -120,9 +120,9 @@
 可以给组件绑定事件，目前只支持`vm.$on`这种方法给树添加事件钩子，与ztree一致。
 回调的最后一个参数用于存储返回值，比如
 ```js
-beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy, store){
-  store.cancel = true //防止拖放完成
-}
+comp.$on('beforeDrop',function(treeId, treeNodes, targetNode, moveType, isCopy, store){
+  store.cancel = true // 防止拖放完成
+})
 ```
 
 ### API
